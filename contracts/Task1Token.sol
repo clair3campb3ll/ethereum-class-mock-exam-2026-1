@@ -28,6 +28,6 @@ contract PracticeToken is ERC20 {
         //
         // The issuer is already stored just above. The amount is startingSupply_.
         // Write one line below.
-
+        _mint(issuer, startingSupply_);
     }
 }

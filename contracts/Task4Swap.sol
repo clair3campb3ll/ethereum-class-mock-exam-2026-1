@@ -51,6 +51,9 @@ contract Task4Swap is ExamBase {
         //   store amountOutYouExpect
         //   lock the prediction so it cannot be recorded twice
         //   emit the event with the value
+        expectedAmountOut = amountOutYouExpect;
+        predictionLocked = true;
+        emit PredictionLogged(expectedAmountOut);
 
     }
 
@@ -63,7 +66,7 @@ contract Task4Swap is ExamBase {
         // This swap must not run until a prediction has been locked in. The flag you
         // set in TODO 4.1 is the one to test. Replace the condition marked below.
 
-        require(true /* replace: a prediction has been locked in */, "record your prediction before you swap");
+        require(predictionLocked, "record your prediction before you swap");
 
         // TODO 4.3 --------------------------------------------------------
         // In Uniswap v4, the sign of amountSpecified says which kind of swap you want.
@@ -74,7 +77,7 @@ contract Task4Swap is ExamBase {
         // and then make it negative.
         // Replace the line below.
 
-        int256 amountSpecified = 0; // <-- replace this
+        int256 amountSpecified = -int256(amountIn);
 
         // TODO 4.4 --------------------------------------------------------
         // sqrtPriceLimitX96 is the furthest the price is allowed to move during the
@@ -91,7 +94,7 @@ contract Task4Swap is ExamBase {
         // zeroForOne tells you which way you are going. Pick the right end.
         // Replace the line below.
 
-        uint160 priceLimit = 0; // <-- replace this
+        uint160 priceLimit = zeroForOne ? TickMath.MIN_SQRT_PRICE + 1 : TickMath.MAX_SQRT_PRICE - 1; 
 
         // Provided. This is the call itself.
         BalanceDelta delta = swapRouter.swap(

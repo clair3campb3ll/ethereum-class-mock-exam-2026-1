@@ -61,7 +61,7 @@ contract Task3Liquidity is ExamBase {
         //
         // Replace the condition marked below.
 
-        require(true /* replace: both ticks are on the grid */, "a tick is not a multiple of the tick spacing");
+        require(tickLower % TICK_SPACING == 0 && tickUpper % TICK_SPACING == 0, "a tick is not a multiple of the tick spacing");
 
         // TODO 3.2 --------------------------------------------------------
         // Liquidity only earns while the price sits inside your range, so the range
@@ -73,8 +73,8 @@ contract Task3Liquidity is ExamBase {
         //
         // Replace the two conditions marked below.
 
-        require(true /* replace: tickNow is not below tickLower */, "the live tick is below your range");
-        require(true /* replace: tickNow is strictly below tickUpper */, "the live tick is at or above your range");
+        require(tickNow >= tickLower, "the live tick is below your range");
+        require(tickNow < tickUpper, "the live tick is at or above your range");
 
         // TODO 3.3 --------------------------------------------------------
         // Ask the router to add the liquidity. The call looks like this:
@@ -92,7 +92,13 @@ contract Task3Liquidity is ExamBase {
         //
         // It gives you back a BalanceDelta. Replace the line below with that call.
 
-        BalanceDelta delta = BalanceDelta.wrap(0); // <-- replace this
+        BalanceDelta delta = liquidityRouter.modifyLiquidity(poolKey(),
+                                                            ModifyLiquidityParams({
+                                                                tickLower : tickLower,
+                                                                tickUpper : tickUpper,
+                                                                liquidityDelta : liquidityDelta,
+                                                                salt : bytes32(0)}), 
+                                                            "");
 
         // Provided. amount0 and amount1 come back negative, because the tokens left
         // this contract and went into the pool.

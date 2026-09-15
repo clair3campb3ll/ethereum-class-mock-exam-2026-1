@@ -46,7 +46,10 @@ contract Task2Pool is ExamBase {
         // Return whichever of the two prices belongs to the sort order you actually got.
         // Replace the line below.
 
-        return 0; // <-- replace this
+        if (alphaIsCurrency0()) {
+        return sqrtPriceIfTokenALower;
+        }
+        return sqrtPriceIfTokenBLower;
     }
 
     /// @notice Opens the pool. You only ever call this once.
@@ -66,7 +69,7 @@ contract Task2Pool is ExamBase {
         // opened at. That returned tick belongs in the variable below.
         // Replace the line below.
 
-        tick = 0; // <-- replace this
+        tick = poolManager.initialize(key, startingPrice);
 
         // TODO 2.3 --------------------------------------------------------
         // Announce it, so the marker can see what you did. Emit PoolReady. Look at
@@ -78,6 +81,6 @@ contract Task2Pool is ExamBase {
         //
         // ExamBase gives you poolId(), currency0() and currency1().
         // Write one emit statement below.
-
+        emit PoolReady(poolId(), currency0(), currency1(), startingPrice, tick);
     }
 }

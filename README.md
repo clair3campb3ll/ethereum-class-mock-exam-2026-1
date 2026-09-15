@@ -40,9 +40,9 @@ terminal at the bottom. After a few seconds it prints three addresses.
 **Step 5.** Copy those three addresses into the table below. You will paste them repeatedly. (There is a button that says *EDIT* at the top of this page, click it to edit this markdown file.)
 
 ```
-Pool manager     0x ______________________________________
-Liquidity router 0x ______________________________________
-Swap router      0x ______________________________________
+  Pool manager     0xD7ACd2a9FD159E69Bb102A1ca21C9a3e3A5F771B
+  Liquidity router 0x7EF2e0048f5bAeDe046f6BF797943daF4ED8CB47
+  Swap router      0xDA0bab807633f07f013f94DD0E6A4F96F8742B53
 ```
 
 > **If you reload the page or change the Environment, everything you deployed is wiped.** You would
@@ -126,6 +126,8 @@ Deployment one, your token A:
 Press **Deploy**. The contract appears under **Deployed Contracts** at the bottom. Click the copy
 icon next to it to get its address.
 
+
+
 Deployment two, your token B: same again, with `Cafeteria Points`, `CAFE`, and the same
 `startingSupply_`.
 
@@ -133,8 +135,8 @@ Deployment two, your token B: same again, with `Cafeteria Points`, `CAFE`, and t
 recover if you lose them. (Replace the underscores in the table below with your addresses, the 0x is just a hint at what the address should look like, so remove it too before you paste.)
 
 ```
-Token A address 0x ______________________________________
-Token B address 0x ______________________________________
+Token A address 0x358AA13c52544ECCEF6B0ADD0f801012ADAD5eE3
+Token B address 0x9D7f74d0C41E726EC95884E0e97Fa6129e3b5E99
 ```
 
 ---
@@ -178,11 +180,11 @@ one becomes `currency0`. Your code picks the right one in `TODO 2.1`.
 **Record these:**
 
 ```
-alphaIsCurrency0        ______________________________________
-poolId                0x ______________________________________
-startingSqrtPriceX96    ______________________________________
-tick after openPool     ______________________________________
-Task2Pool address     0x ______________________________________
+alphaIsCurrency0        true
+poolId                0x83359a3b45fce08300f021f791bcf96bbcc33aed2eed611ac05fc50f4788931d
+startingSqrtPriceX96    316912650057057350374175801344 (_sqrtPriceIfTokenALower)
+tick after openPool     27727
+Task2Pool address     0xd2a5bC10698FD955D1Fe6cb468a17809A08fd005
 ```
 
 *Remember to get the address of the deployed contract, click the copy icon next to the address in the **Deployed Contracts** section.*
@@ -245,11 +247,11 @@ the terminal, expand the transaction and look at **decoded output**. It gives yo
 **Record these:**
 
 ```
-tickLower        ______________________________________
-tickUpper        ______________________________________
-amount0          ______________________________________
-amount1          ______________________________________
-Task3 address 0x ______________________________________
+tickLower        23600
+tickUpper        31600
+amount0          -2200431510220132625644
+amount1          -37290889336267464876407
+Task3 address 0x0fC5025C764cE34df352757e82f7B5c4Df39A836
 ```
 
 *Remember to get the address of the deployed contract, click the copy icon next to the address in the **Deployed Contracts** section.*
@@ -310,9 +312,14 @@ of the token, the same as everything else.
 **Record these:**
 
 ```
-predicted output    ______________________________________
-actual output       ______________________________________
-Task4 address     0x ______________________________________
+predicted output    309375000000000000
+actual output       309367343158256833
+Task4 address     0xD4Fc541236927E2EAf8F27606bD7309C1Fc2cbee
+```
+
+```
+	"0": "int256: amount0 309367343158256833",
+	"1": "int256: amount1 -5000000000000000000"
 ```
 
 *Remember to get the address of the deployed contract, click the copy icon next to the address in the **Deployed Contracts** section.*
